@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&family=Heebo&display=swap"
+        rel="stylesheet">
+    <title>Cajero Automatico</title>
+</head>
+
+
+<body>
+
+    <div class="entry">
+
+        <div>
+            <h1 id="generalTitle"> Bienvenidos a Global Group </h1>
+            <img id="icon" src="assets\money.png" alt="icon">
+        </div>
+
+
+        <form action="">
+
+
+            <label id="titleAccount" for="account"> Número de Cuenta: </label>
+            <input id="account" type="text" placeholder="ex: 60755912778" minlength="11">
+
+            <label id="titlePassword" for="password"> Contraseña:</label>
+            <input id="password" type="password" placeholder="cuatro números" minlength="4">
+
+            <button id="resetBtn" type="reset"> Borrar </button>
+
+            <button id="validateBtn"> Continuar </button>
+
+
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
