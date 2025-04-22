@@ -2,18 +2,24 @@
 
 Welcome to the prototype of an **ATM** developed with **HTML**, **CSS** and **JavaScript**! This project simulates the experience of a real ATM, allowing users to:
 
-- Log in** with your account
+- Log in with your account
 - Check your **available balance**.
 - Make **deposits** and **withdrawals** of money
 - View your **transaction history**.
 - All this, with an **interactive interface** and **responsive design**.
+
+### 🖼️ Preview
+
+![demo1](./assets/demo1.JPG)
+
+![demo2](./assets/demo2.JPG)
 
 ### ✨ Watch how it works
 ![Demo](./assets/demo.gif)
 
 ---
 
-## 🗂️ Estructura de Archivos
+## 🗂️ File Structure
 ```
 ATM/
 ├── index.html       # Cashier main interface: login, profile and actions
