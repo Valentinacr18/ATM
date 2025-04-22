@@ -1,46 +1,76 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&family=Heebo&display=swap"
-        rel="stylesheet">
-    <title>Cajero Automatico</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATM Prototype</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-
 <body>
+  
+  <!-- LOGIN -->
+  <div id="login-container" class="atm-container">
+    <h1>Log In</h1>
+    <form id="login-form">
+      <label for="account-number">Account Number:</label>
+      <input type="text" id="account-number" required />
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+      <button type="submit">Log In</button>
+    </form>
+    <p id="login-error" style="color: red; display: none;">
+      Incorrect account number or password
+    </p>
+  </div>
 
-    <div class="entry">
+  <!-- PROFILE -->
+  <div id="profile-container" class="atm-container" style="display: none;">
+    <h1>Welcome <span id="user-name"></span></h1>
+    <p>Account: <span id="account-number-display"></span></p>
+    <p>Available Balance: $<span id="balance">0.00</span></p>
 
-        <div>
-            <h1 id="generalTitle"> Bienvenidos a Global Group </h1>
-            <img id="icon" src="assets\money.png" alt="icon">
-        </div>
-
-
-        <form action="">
-
-
-            <label id="titleAccount" for="account"> Número de Cuenta: </label>
-            <input id="account" type="text" placeholder="ex: 60755912778" minlength="11">
-
-            <label id="titlePassword" for="password"> Contraseña:</label>
-            <input id="password" type="password" placeholder="cuatro números" minlength="4">
-
-            <button id="resetBtn" type="reset"> Borrar </button>
-
-            <button id="validateBtn"> Continuar </button>
-
-
-        </form>
+    <!-- Action Buttons -->
+    <div id="actions-container" class="actions-container">
+      <button id="btn-deposit">Deposit</button>
+      <button id="btn-withdraw">Withdraw</button>
+      <button id="btn-view-transactions">View Transactions</button>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Deposit Form -->
+    <div id="deposit-form" class="action-form" style="display: none;">
+      <h3>Deposit Money</h3>
+      <label for="deposit-amount">Amount to deposit:</label>
+      <input type="number" id="deposit-amount" placeholder="$0.00" min="1" max="10000" />
+      <button onclick="deposit()">Confirm Deposit</button>
+      <button onclick="closeForm()">Close</button>
+    </div>
 
+    <!-- Withdraw Form -->
+    <div id="withdraw-form" class="action-form" style="display: none;">
+      <h3>Withdraw Money</h3>
+      <label for="withdraw-amount">Amount to withdraw:</label>
+      <input type="number" id="withdraw-amount" placeholder="$0.00" min="1" />
+      <button onclick="withdraw()">Confirm Withdrawal</button>
+      <button onclick="closeForm()">Close</button>
+    </div>
+
+    <!-- Transactions -->
+    <div id="transactions-container" class="atm-container" style="display: none;">
+      <h3>Transactions</h3>
+      <ul id="transactions-list"></ul>
+      <button onclick="closeTransactions()">Close</button>
+    </div>
+
+    <!-- Spinner -->
+    <div id="spinner" style="display: none; margin-top: 10px;">
+      <p>Processing...</p>
+    </div>
+
+    <!-- Logout Button -->
+    <button id="back-btn" onclick="goBackToHome()">Back to Home</button>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
 </html>

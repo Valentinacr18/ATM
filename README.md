@@ -1,17 +1,35 @@
-# cajero.github.io
-Cajero Automático
+# 💳 **ATM Prototype** 💰
 
-Especificaciones:
+Welcome to the prototype of an **ATM** developed with **HTML**, **CSS** and **JavaScript**! This project simulates the experience of a real ATM, allowing users to:
 
-Generales:
+- Log in** with your account
+- Check your **available balance**.
+- Make **deposits** and **withdrawals** of money
+- View your **transaction history**.
+- All this, with an **interactive interface** and **responsive design**.
 
-Al inicio se debe digitar el número de cuenta del usuario con su respectiva contraseña, en caso de que los valores sean validos, se podra entrar a su perfil en el que se encuentra:
+### ✨ Watch how it works
+![Demo](./assets/demo.gif)
 
--Nombre Completo
--Número de cuenta 
--Saldo Actual 
+---
 
-En la parte inferior se puede ingresar el valor que se requiera consignar o retirar, dicha accion se ejecutara al hacer click en los botones que representa cada una.
+## 🗂️ Estructura de Archivos
+```
+ATM/
+├── index.html       # Cashier main interface: login, profile and actions
+├── style.css        # ATM visual styles
+├── script.js        # ATM operating logic (login and transactions)
+└── README.md        # Project documentation 
 
-Nota: El monto maximo que se puede tener en la cuenta es de $990 y el monto mínimo de $10.
+```
+---
 
+## 📚 Recursos utilizados
+
+- [MDN Web Docs - HTML](https://developer.mozilla.org/es/docs/Web/HTML)  
+- [MDN Web Docs - CSS](https://developer.mozilla.org/es/docs/Web/CSS)  
+- [MDN Web Docs - JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)  
+- [JavaScript.info](https://javascript.info/)  
+- [W3Schools - HTML Forms](https://www.w3schools.com/html/html_forms.asp)  
+- [W3Schools - JavaScript Events](https://www.w3schools.com/js/js_events.asp)  
+- [CSS Tricks - Centering in CSS](https://css-tricks.com/centering-css-complete-guide/)  
