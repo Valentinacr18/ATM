@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const userNameSpan = document.getElementById('user-name');
   const accountNumberDisplay = document.getElementById('account-number-display');
   const balanceSpan = document.getElementById('balance');
-  const actions = document.getElementById('actions-container');
+  const usedBar = document.getElementById('used-bar');
+  const usedAmountSpan = document.getElementById('used-amount');
+  const remainingAmountSpan = document.getElementById('remaining-amount');
+  const actions = document.querySelector('.actions-container');
   const transactionsContainer = document.getElementById('transactions-container');
   const transactionsList = document.getElementById('transactions-list');
 
@@ -32,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
       loginContainer.style.display = 'none';
       profileContainer.style.display = 'block';
       userNameSpan.textContent = account.name;
-      accountNumberDisplay.textContent = account.number;
-      balanceSpan.textContent = account.balance.toFixed(2);
+      accountNumberDisplay.textContent = account.number.slice(-4);
+      updateBalanceUI();
       loginError.style.display = 'none';
     } else {
       loginError.style.display = 'block';
@@ -55,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showTransactions();
   });
 
-  document.getElementById('back-btn').addEventListener('click', () => {
+  document.getElementById('back-btn')?.addEventListener('click', () => {
     currentAccount = null;
     loginContainer.style.display = 'block';
     profileContainer.style.display = 'none';
@@ -67,13 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     actions.style.display = 'block';
   });
 
-  document.getElementById('deposit-amount').addEventListener('input', () => {
-    hideLoginError();
-  });
-
-  document.getElementById('withdraw-amount').addEventListener('input', () => {
-    hideLoginError();
-  });
+  document.getElementById('deposit-amount').addEventListener('input', hideLoginError);
+  document.getElementById('withdraw-amount').addEventListener('input', hideLoginError);
 
   function hideActions() {
     actions.style.display = 'none';
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isNaN(amount) && amount > 0 && amount <= 10000) {
       currentAccount.balance += amount;
       currentAccount.transactions.push(`+ $${amount.toFixed(2)} (Deposit)`);
-      balanceSpan.textContent = currentAccount.balance.toFixed(2);
+      updateBalanceUI();
       document.getElementById('deposit-form').style.display = 'none';
       actions.style.display = 'block';
       document.getElementById('deposit-amount').value = '';
@@ -121,12 +119,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isNaN(amount) && amount > 0 && amount <= currentAccount.balance) {
       currentAccount.balance -= amount;
       currentAccount.transactions.push(`- $${amount.toFixed(2)} (Withdrawal)`);
-      balanceSpan.textContent = currentAccount.balance.toFixed(2);
+      updateBalanceUI();
       document.getElementById('withdraw-form').style.display = 'none';
       actions.style.display = 'block';
       document.getElementById('withdraw-amount').value = '';
     }
   };
+
+  function updateBalanceUI() {
+    const balance = currentAccount.balance;
+
+    const totalWithdrawals = currentAccount.transactions
+      .filter(t => t.includes('(Withdrawal)'))
+      .reduce((sum, t) => {
+        const amount = parseFloat(t.split('$')[1]);
+        return sum + amount;
+      }, 0);
+
+    balanceSpan.textContent = balance.toFixed(2);
+
+    const totalInitial = balance + totalWithdrawals;
+    const usedPercent = totalInitial > 0 ? (totalWithdrawals / totalInitial) * 100 : 0;
+
+    usedBar.style.width = `${usedPercent.toFixed(2)}%`;
+    usedAmountSpan.textContent = totalWithdrawals.toFixed(2);
+    remainingAmountSpan.textContent = balance.toFixed(2);
+  }
 
   function hideLoginError() {
     loginError.style.display = 'none';

@@ -1,76 +1,93 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ATM Prototype</title>
+  <title>ATM App</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-
 <body>
-  
+
   <!-- LOGIN -->
   <div id="login-container" class="atm-container">
-    <h1>Log In</h1>
+    <h1 class="logo-title">ATM Login</h1>
     <form id="login-form">
-      <label for="account-number">Account Number:</label>
-      <input type="text" id="account-number" required />
-      <label for="password">Password:</label>
-      <input type="password" id="password" required />
+      <input type="text" id="account-number" placeholder="Account Number" required />
+      <input type="password" id="password" placeholder="Password" required />
       <button type="submit">Log In</button>
     </form>
-    <p id="login-error" style="color: red; display: none;">
-      Incorrect account number or password
-    </p>
+    <p id="login-error" class="error-msg" style="display: none;">Incorrect account number or password</p>
   </div>
 
   <!-- PROFILE -->
   <div id="profile-container" class="atm-container" style="display: none;">
-    <h1>Welcome <span id="user-name"></span></h1>
-    <p>Account: <span id="account-number-display"></span></p>
-    <p>Available Balance: $<span id="balance">0.00</span></p>
+    
+    <!-- Card Style Info -->
+    <div class="card-box">
+      <div class="card-chip"></div>
+      <div class="card-details">
+        <p class="card-label">CREDIT CARD</p>
+        <p class="card-number">**** **** **** <span id="account-number-display">0000</span></p>
+        <p class="card-name" id="user-name">User</p>
+      </div>
+    </div>
+
+    <!-- Balance Info -->
+    <div class="balance-section">
+      <h2>Available Balance</h2>
+      <div class="balance-amount">$<span id="balance">0.00</span></div>
+      <div class="balance-bar">
+        <div class="used-bar" id="used-bar" style="width: 0%"></div>
+      </div>
+      <div class="balance-numbers">
+        <span>Used: $<span id="used-amount">0.00</span></span>
+        <span>Remaining: $<span id="remaining-amount">0.00</span></span>
+      </div>
+    </div>
 
     <!-- Action Buttons -->
-    <div id="actions-container" class="actions-container">
-      <button id="btn-deposit">Deposit</button>
-      <button id="btn-withdraw">Withdraw</button>
-      <button id="btn-view-transactions">View Transactions</button>
+    <div class="actions-container">
+      <button id="btn-deposit"><i class="ph ph-arrow-circle-down"></i> Deposit</button>
+      <button id="btn-withdraw"><i class="ph ph-arrow-circle-up"></i> Withdraw</button>
+      <button id="btn-view-transactions"><i class="ph ph-list-bullets"></i> Transactions</button>
     </div>
 
-    <!-- Deposit Form -->
-    <div id="deposit-form" class="action-form" style="display: none;">
+    <!-- Forms -->
+    <div id="deposit-form" class="action-form">
       <h3>Deposit Money</h3>
-      <label for="deposit-amount">Amount to deposit:</label>
       <input type="number" id="deposit-amount" placeholder="$0.00" min="1" max="10000" />
-      <button onclick="deposit()">Confirm Deposit</button>
-      <button onclick="closeForm()">Close</button>
+      <button onclick="deposit()">Confirm</button>
+      <button onclick="closeForm()" class="secondary">Cancel</button>
     </div>
 
-    <!-- Withdraw Form -->
-    <div id="withdraw-form" class="action-form" style="display: none;">
+    <div id="withdraw-form" class="action-form">
       <h3>Withdraw Money</h3>
-      <label for="withdraw-amount">Amount to withdraw:</label>
       <input type="number" id="withdraw-amount" placeholder="$0.00" min="1" />
-      <button onclick="withdraw()">Confirm Withdrawal</button>
-      <button onclick="closeForm()">Close</button>
+      <button onclick="withdraw()">Confirm</button>
+      <button onclick="closeForm()" class="secondary">Cancel</button>
     </div>
 
     <!-- Transactions -->
-    <div id="transactions-container" class="atm-container" style="display: none;">
+    <div id="transactions-container" class="transactions-container">
       <h3>Transactions</h3>
       <ul id="transactions-list"></ul>
-      <button onclick="closeTransactions()">Close</button>
+      <button onclick="closeTransactions()" class="secondary">Close</button>
     </div>
 
     <!-- Spinner -->
-    <div id="spinner" style="display: none; margin-top: 10px;">
-      <p>Processing...</p>
-    </div>
+    <div id="spinner" style="display: none;"><p>Processing...</p></div>
 
-    <!-- Logout Button -->
-    <button id="back-btn" onclick="goBackToHome()">Back to Home</button>
+  </div>
+
+  <!-- Navigation Bottom -->
+  <div class="bottom-nav">
+    <div><i class="ph ph-house"></i><span>Home</span></div>
+    <div><i class="ph ph-credit-card"></i><span>Cards</span></div>
+    <div><i class="ph ph-money"></i><span>Payments</span></div>
+    <div><i class="ph ph-chart-bar"></i><span>Dashboard</span></div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
