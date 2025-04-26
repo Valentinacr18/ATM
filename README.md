@@ -16,7 +16,7 @@ Welcome to the prototype of an **ATM** developed with **HTML**, **CSS** and **Ja
 
 ### ✨ Watch how it works
 
-![Demo](./assets/demo.gif)
+![Demo](./assets/demo3.gif)
 
 ---
 
