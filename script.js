@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const usedBar = document.getElementById('used-bar');
   const usedAmountSpan = document.getElementById('used-amount');
   const remainingAmountSpan = document.getElementById('remaining-amount');
+  const greeting = document.getElementById('greeting');
   const actions = document.querySelector('.actions-container');
   const transactionsContainer = document.getElementById('transactions-container');
   const transactionsList = document.getElementById('transactions-list');
+  const btnLogout = document.getElementById('btn-logout');
 
   const btnDeposit = document.getElementById('btn-deposit');
   const btnWithdraw = document.getElementById('btn-withdraw');
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userNameSpan.textContent = account.name;
       accountNumberDisplay.textContent = account.number.slice(-4);
       updateBalanceUI();
+      showGreeting();
       loginError.style.display = 'none';
     } else {
       loginError.style.display = 'block';
@@ -58,16 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     showTransactions();
   });
 
-  document.getElementById('back-btn')?.addEventListener('click', () => {
+  btnLogout.addEventListener('click', () => {
     currentAccount = null;
-    loginContainer.style.display = 'block';
     profileContainer.style.display = 'none';
-    transactionsContainer.style.display = 'none';
-    document.getElementById('deposit-form').style.display = 'none';
-    document.getElementById('withdraw-form').style.display = 'none';
-    document.getElementById('account-number').value = '';
-    document.getElementById('password').value = '';
-    actions.style.display = 'block';
+    loginContainer.style.display = 'block';
   });
 
   document.getElementById('deposit-amount').addEventListener('input', hideLoginError);
@@ -93,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.closeTransactions = function () {
     transactionsContainer.style.display = 'none';
-    actions.style.display = 'block';
+    actions.style.display = 'flex';
   };
 
   window.closeForm = function () {
     document.getElementById('deposit-form').style.display = 'none';
     document.getElementById('withdraw-form').style.display = 'none';
-    actions.style.display = 'block';
+    actions.style.display = 'flex';
   };
 
   window.deposit = function () {
@@ -109,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentAccount.transactions.push(`+ $${amount.toFixed(2)} (Deposit)`);
       updateBalanceUI();
       document.getElementById('deposit-form').style.display = 'none';
-      actions.style.display = 'block';
+      actions.style.display = 'flex';
       document.getElementById('deposit-amount').value = '';
     }
   };
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentAccount.transactions.push(`- $${amount.toFixed(2)} (Withdrawal)`);
       updateBalanceUI();
       document.getElementById('withdraw-form').style.display = 'none';
-      actions.style.display = 'block';
+      actions.style.display = 'flex';
       document.getElementById('withdraw-amount').value = '';
     }
   };
@@ -148,5 +145,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function hideLoginError() {
     loginError.style.display = 'none';
+  }
+
+  function showGreeting() {
+    const now = new Date();
+    const hour = now.getHours();
+    let message = 'Hello';
+    if (hour >= 5 && hour < 12) {
+      message = 'Good morning';
+    } else if (hour >= 12 && hour < 18) {
+      message = 'Good afternoon';
+    } else {
+      message = 'Good evening';
+    }
+    greeting.textContent = `${message}, ${currentAccount.name.split(' ')[0]}!`;
   }
 });

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATM App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
@@ -22,9 +23,13 @@
 
   <!-- PROFILE -->
   <div id="profile-container" class="atm-container" style="display: none;">
-    
+
+    <!-- Dynamic Greeting -->
+    <h2 id="greeting" class="greeting">Hello, User</h2>
+
     <!-- Card Style Info -->
     <div class="card-box">
+      <div class="card-glow"></div>
       <div class="card-chip"></div>
       <div class="card-details">
         <p class="card-label">CREDIT CARD</p>
@@ -75,17 +80,14 @@
       <button onclick="closeTransactions()" class="secondary">Close</button>
     </div>
 
+    <!-- Log Out Button -->
+    <div style="margin-top: 20px;">
+      <button id="btn-logout" class="secondary">Log Out</button>
+    </div>
+
     <!-- Spinner -->
     <div id="spinner" style="display: none;"><p>Processing...</p></div>
 
-  </div>
-
-  <!-- Navigation Bottom -->
-  <div class="bottom-nav">
-    <div><i class="ph ph-house"></i><span>Home</span></div>
-    <div><i class="ph ph-credit-card"></i><span>Cards</span></div>
-    <div><i class="ph ph-money"></i><span>Payments</span></div>
-    <div><i class="ph ph-chart-bar"></i><span>Dashboard</span></div>
   </div>
 
   <script src="script.js"></script>
