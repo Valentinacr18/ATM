@@ -19,7 +19,6 @@ Welcome to the prototype of an **ATM** developed with **HTML**, **CSS** and **Ja
 ![Demo](./assets/demo3.gif)
 
 ---
-
 ## 🗂️ File Structure
 ```
 ATM/
@@ -30,7 +29,6 @@ ATM/
 
 ```
 ---
-
 ## 📚 Recursos utilizados
 
 - [MDN Web Docs - HTML](https://developer.mozilla.org/es/docs/Web/HTML)  
