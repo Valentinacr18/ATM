@@ -1,5 +1,4 @@
 # 💳 **ATM Prototype** 💰
-
 Welcome to the prototype of an **ATM** developed with **HTML**, **CSS** and **JavaScript**! This project simulates the experience of a real ATM, allowing users to:
 
 - Log in with your account
